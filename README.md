@@ -82,5 +82,6 @@ Começo  chamando a função valid_string() que recebe a data em formato string 
 Como não posso ter certeza que o usuário vai digitar a data num padrão que desejo tento prever alguns padrões de datas e adiciono a hora minutos e segundos, para que minha função consiga converter para datetime e que eu possa salvar no meu banco de dados no padrão datetime.
 
 ## Testando a função que converte data e hora no padrão americano para datetime
-Uma api que consulto traz a data nesse formato "01-10-2018 00:31:29"  então implemento teste para validar se meu código está conseguindo converter para datetime  assim como converti datas no padrão brasileiro para  datetime, assim quero fazer com a com os dados que eu pego via api salvando no banco de dados no formato datetime, e inserindo na planilha somente a data e no formato brasileiro. Então começo criando o cenário que recebo ess
+Uma api que consulto traz a data nesse formato "01-10-2018 00:31:29"  então implemento teste para validar se meu código está conseguindo converter para datetime  assim como converti datas no padrão brasileiro para  datetime, assim quero fazer com a com os dados que eu pego via api salvando no banco de dados no formato datetime, e inserindo na planilha somente a data e no formato brasileiro.
+ Então começo criando o cenário que recebo 
 
