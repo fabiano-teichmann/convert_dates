@@ -15,13 +15,22 @@ Depois comecei escrevendo minha classse e configunrando o Setup
 Para começar a brincadeira eu começo com  duas lista um de datas válidas de diversos formatos e padrões  e outra de datas inválidas O proposito dessas datas invalidas é forçar uma quebra no programa, quando não consigo converter o comportamento desejado pelo meu programa é retornar um dicionário com um código de resposta padrão do protocolo http e uma mensagem, por isso pensei nas mais loucas possibilidades de usuário colocar algo invalido na data, como por exemplo catota no nariz kkkk. 
 
 ## Testando converte uma data no formato brasileiro para datetime
-Eu pego minha lista de datas no formato brasileiro válido e testo se minha função converte para datetime. O propósito desse teste é ter certeza que daqui um tempo quando adicionar novos formato de datas que as pessoas vão colocar eu possa verificar de maneira simples e prática se seu software ainda consegue converter para datetime
+Eu pego minha lista de datas no formato brasileiro válido e testo se minha função converte para datetime. 
+O propósito desse teste é ter certeza que daqui um tempo quando adicionar novos formato de datas que as pessoas vão colocar eu possa verificar de maneira simples e prática se seu software ainda consegue converter para datetime.
+E para finalizar tenho ter certeza que se eu converter de datetime para string no formato brasileiro o input seja no formato "dia/mês/ano".
+E que seja igual a data de entrada.
 
-    def test_convert_string_brazil_to_datetime(self):
-        """ Test if function convert string for format datetime """
-        for d in self.dates:
-            date = ConvertDate().convert_date_brasil_for_datetime(d)
+        def test_convert_string_brazil_to_datetime(self):
+        """Test convert datetime for string in format date brazil"""
+
+        for d in self.dates_brasil:
+            date = ConvertDate().convert_date_brasil_to_datetime(d)
             self.assertIsInstance(date, datetime, msg="A função não consegui converter para datetime")
+            date_brasil = ConvertDate().convert_datetime_to_date_brazil(date)
+            """Aqui faço a troca do - pelo / pois o usuário pode digitar com o -  e removo a hora minutos e segundo
+            """
+            self.assertEqual(date_brasil,  d[0:10].replace('-', '/'),
+                             msg="Opa o output deve ser igual ao input")
 
 Somente agora com esse cenário definido do que o que eu espero em caso de sucesso e em caso de falha eu começo escrever meu código em si
 
@@ -82,6 +91,15 @@ Começo  chamando a função valid_string() que recebe a data em formato string 
 Como não posso ter certeza que o usuário vai digitar a data num padrão que desejo tento prever alguns padrões de datas e adiciono a hora minutos e segundos, para que minha função consiga converter para datetime e que eu possa salvar no meu banco de dados no padrão datetime.
 
 ## Testando a função que converte data e hora no padrão americano para datetime
-Uma api que consulto traz a data nesse formato "01-10-2018 00:31:29"  então implemento teste para validar se meu código está conseguindo converter para datetime  assim como converti datas no padrão brasileiro para  datetime, assim quero fazer com a com os dados que eu pego via api salvando no banco de dados no formato datetime, e inserindo na planilha somente a data e no formato brasileiro.
- Então começo criando o cenário que recebo 
+Uma api que consulto traz a data nesse formato "2018-12-31 04:32:32". 
+Então implemento teste para validar se meu código está conseguindo converter para datetime assim como converti datas
+no padrão brasileiro para datetime.
+
+        def test_convert_to_string_american_to_datetime(self):
+        """Test convert datetime for string in format american '%Y-%m-%d %H:%M:%S'"""
+        for d in self.date_american:
+            date = ConvertDate().convert_date_american_to_datetime(d)
+            self.assertIsInstance(date, datetime, msg="A função não consegui converter para datetime")
+            
+             
 
