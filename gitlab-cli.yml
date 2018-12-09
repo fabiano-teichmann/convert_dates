@@ -1,0 +1,10 @@
+image: python:latest
+
+pages:
+  script:
+    -  python -m unittest test_convert_dates.py
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
